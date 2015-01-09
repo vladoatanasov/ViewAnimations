@@ -16,4 +16,26 @@
         android:background="#fafafa"
         android:id="@+id/line" />
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/line"
+        android:orientation="horizontal"
+        android:layout_marginTop="40dp">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Animate label"
+            android:id="@+id/animate_label_btn" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Some text here"
+            android:layout_marginLeft="10dp"
+            android:textColor="#fffff42b"
+            android:id="@+id/label" />
+    </LinearLayout>
+
 </RelativeLayout>

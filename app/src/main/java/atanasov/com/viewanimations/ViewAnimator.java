@@ -5,6 +5,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Interpolator;
+import android.widget.TextView;
+
+import java.io.InvalidClassException;
 
 public class ViewAnimator {
     private View mView;
@@ -73,6 +76,29 @@ public class ViewAnimator {
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
                 params.rightMargin = (Integer) valueAnimator.getAnimatedValue();
                 mView.requestLayout();
+            }
+        });
+
+        animator.setDuration(mDuration);
+        animator.setStartDelay(mStartDelay);
+        animator.setInterpolator(mInterpolator);
+        animator.start();
+    }
+
+    public void animateTextColor(int newColor) throws InvalidClassException {
+        if (mView == null)
+            throw new NullPointerException("View is null");
+
+        if (!(mView instanceof TextView))
+            throw new InvalidClassException("Not a TextView");
+
+        final TextView v = (TextView) mView;
+
+        ValueAnimator animator = ValueAnimator.ofInt(v.getCurrentTextColor(), newColor);
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                v.setTextColor((int) animation.getAnimatedValue());
             }
         });
 

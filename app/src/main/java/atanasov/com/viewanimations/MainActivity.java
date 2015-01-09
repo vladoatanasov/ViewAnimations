@@ -1,14 +1,20 @@
 package atanasov.com.viewanimations;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import java.io.InvalidClassException;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import butterknife.OnClick;
 
 
 public class MainActivity extends ActionBarActivity implements SwipeInterface {
@@ -16,10 +22,14 @@ public class MainActivity extends ActionBarActivity implements SwipeInterface {
     RelativeLayout container;
     @InjectView(R.id.line)
     View line;
+    @InjectView(R.id.label)
+    TextView label;
 
     private static final int ANIMATION_DURATION = 300;
 
     ActivitySwipeDetector swipeDetector;
+
+    private boolean animatedTitle = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +60,30 @@ public class MainActivity extends ActionBarActivity implements SwipeInterface {
     public void onRightToLeft(View v) {
         new ViewAnimator()
                 .setView(line)
-                .setDuration(300)
+                .setDuration(ANIMATION_DURATION)
                 .setInterpolator(new OvershootInterpolator())
                 .animateLeftMargin(0);
     }
+
+    @OnClick(R.id.animate_label_btn)
+    void onAnimateClick() {
+        String animateToColor;
+
+        if (!animatedTitle)
+            animateToColor = "#FFFF1844";
+        else
+            animateToColor = "#fffff42b";
+
+        try {
+            new ViewAnimator()
+                    .setView(label)
+                    .setDuration(ANIMATION_DURATION)
+                    .animateTextColor(Color.parseColor(animateToColor));
+
+            animatedTitle = !animatedTitle;
+        } catch (InvalidClassException e) {
+            Log.e("ViewAnimator", e.getMessage());
+        }
+    }
+
 }
