@@ -54,7 +54,7 @@ public class MainActivity extends ActionBarActivity implements SwipeInterface {
                 .setView(line)
                 .setDuration(300)
                 .setInterpolator(new OvershootInterpolator())
-                .animateLeftMargin(500);
+                .animateLeftMargin(0);
     }
 
     @Override
@@ -63,7 +63,7 @@ public class MainActivity extends ActionBarActivity implements SwipeInterface {
                 .setView(line)
                 .setDuration(ANIMATION_DURATION)
                 .setInterpolator(new OvershootInterpolator())
-                .animateLeftMargin(0);
+                .animateLeftMargin(500);
     }
 
     @OnClick(R.id.animate_color_btn)
