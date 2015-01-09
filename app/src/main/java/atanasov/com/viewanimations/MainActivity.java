@@ -29,7 +29,8 @@ public class MainActivity extends ActionBarActivity implements SwipeInterface {
 
     ActivitySwipeDetector swipeDetector;
 
-    private boolean animatedTitle = false;
+    private boolean animatedColor = false;
+    private boolean animatedOpacity = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,11 +66,11 @@ public class MainActivity extends ActionBarActivity implements SwipeInterface {
                 .animateLeftMargin(0);
     }
 
-    @OnClick(R.id.animate_label_btn)
-    void onAnimateClick() {
+    @OnClick(R.id.animate_color_btn)
+    void onAnimateColorClick() {
         String animateToColor;
 
-        if (!animatedTitle)
+        if (!animatedColor)
             animateToColor = "#FFFF1844";
         else
             animateToColor = "#fffff42b";
@@ -80,10 +81,27 @@ public class MainActivity extends ActionBarActivity implements SwipeInterface {
                     .setDuration(ANIMATION_DURATION)
                     .animateTextColor(Color.parseColor(animateToColor));
 
-            animatedTitle = !animatedTitle;
+            animatedColor = !animatedColor;
         } catch (InvalidClassException e) {
             Log.e("ViewAnimator", e.getMessage());
         }
+    }
+
+    @OnClick(R.id.animate_opacity_btn)
+    void onAnimateOpacityClick() {
+        float animateToOpacity;
+
+        if (!animatedOpacity)
+            animateToOpacity = 0.6f;
+        else
+            animateToOpacity = 1f;
+
+        new ViewAnimator()
+                .setView(label)
+                .setDuration(ANIMATION_DURATION)
+                .animateOpacity(animateToOpacity);
+
+        animatedOpacity = !animatedOpacity;
     }
 
 }

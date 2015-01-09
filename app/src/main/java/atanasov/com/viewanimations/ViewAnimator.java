@@ -107,4 +107,22 @@ public class ViewAnimator {
         animator.setInterpolator(mInterpolator);
         animator.start();
     }
+
+    public void animateOpacity(float newOpacity) {
+        if (mView == null)
+            throw new NullPointerException("View is null");
+
+        final ValueAnimator animator = ValueAnimator.ofFloat(mView.getAlpha(), newOpacity);
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                mView.setAlpha((float) animator.getAnimatedValue());
+            }
+        });
+
+        animator.setDuration(mDuration);
+        animator.setStartDelay(mStartDelay);
+        animator.setInterpolator(mInterpolator);
+        animator.start();
+    }
 }

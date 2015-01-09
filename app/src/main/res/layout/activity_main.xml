@@ -23,11 +23,24 @@
         android:orientation="horizontal"
         android:layout_marginTop="40dp">
 
-        <Button
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Animate label"
-            android:id="@+id/animate_label_btn" />
+            android:orientation="vertical">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Animate color"
+                android:id="@+id/animate_color_btn" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Animate opacity"
+                android:id="@+id/animate_opacity_btn" />
+        </LinearLayout>
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -35,6 +48,7 @@
             android:text="Some text here"
             android:layout_marginLeft="10dp"
             android:textColor="#fffff42b"
+            android:layout_gravity="center"
             android:id="@+id/label" />
     </LinearLayout>
 
