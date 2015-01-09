@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.OvershootInterpolator;
 import android.widget.RelativeLayout;
 
 import butterknife.ButterKnife;
@@ -15,6 +16,8 @@ public class MainActivity extends ActionBarActivity implements SwipeInterface {
     RelativeLayout container;
     @InjectView(R.id.line)
     View line;
+
+    private static final int ANIMATION_DURATION = 300;
 
     ActivitySwipeDetector swipeDetector;
 
@@ -36,19 +39,19 @@ public class MainActivity extends ActionBarActivity implements SwipeInterface {
 
     @Override
     public void onLeftToRight(View v) {
-        ViewAnimator animator = new ViewAnimator();
-        animator.setView(line);
-        animator.setDuration(600);
-
-        animator.animateLeftMargin(500);
+        new ViewAnimator()
+                .setView(line)
+                .setDuration(300)
+                .setInterpolator(new OvershootInterpolator())
+                .animateLeftMargin(500);
     }
 
     @Override
     public void onRightToLeft(View v) {
-        ViewAnimator animator = new ViewAnimator();
-        animator.setView(line);
-        animator.setDuration(600);
-
-        animator.animateLeftMargin(0);
+        new ViewAnimator()
+                .setView(line)
+                .setDuration(300)
+                .setInterpolator(new OvershootInterpolator())
+                .animateLeftMargin(0);
     }
 }

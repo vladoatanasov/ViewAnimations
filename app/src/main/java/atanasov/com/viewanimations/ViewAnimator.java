@@ -12,20 +12,28 @@ public class ViewAnimator {
     private int mDuration = 0;
     private Interpolator mInterpolator;
 
-    public void setView(View mView) {
+    public ViewAnimator setView(View mView) {
         this.mView = mView;
+
+        return this;
     }
 
-    public void setStartDelay(int mStartDelay) {
+    public ViewAnimator setStartDelay(int mStartDelay) {
         this.mStartDelay = mStartDelay;
+
+        return this;
     }
 
-    public void setDuration(int mDuration) {
+    public ViewAnimator setDuration(int mDuration) {
         this.mDuration = mDuration;
+
+        return this;
     }
 
-    public void setInterpolator(Interpolator mInterpolator) {
+    public ViewAnimator setInterpolator(Interpolator mInterpolator) {
         this.mInterpolator = mInterpolator;
+
+        return this;
     }
 
     public void animateLeftMargin(final int newMargin) {
