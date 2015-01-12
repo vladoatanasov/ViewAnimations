@@ -85,6 +85,28 @@ public class ViewAnimator {
         animator.start();
     }
 
+    public void animateLeftPadding(final int newPadding) {
+        if (mView == null)
+            throw new NullPointerException("View is null");
+
+        if (mInterpolator == null)
+            mInterpolator = new AccelerateInterpolator();
+
+        ValueAnimator animator = ValueAnimator.ofInt(mView.getPaddingLeft(), newPadding);
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                mView.setPadding((Integer) valueAnimator.getAnimatedValue(), mView.getPaddingTop(), mView.getPaddingRight(), mView.getPaddingBottom());
+                mView.requestLayout();
+            }
+        });
+
+        animator.setDuration(mDuration);
+        animator.setStartDelay(mStartDelay);
+        animator.setInterpolator(mInterpolator);
+        animator.start();
+    }
+
     public void animateTextColor(int newColor) throws InvalidClassException {
         if (mView == null)
             throw new NullPointerException("View is null");
